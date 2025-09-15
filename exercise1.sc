@@ -1,13 +1,19 @@
-object Main {
-  def pascal(c: Int, r: Int): Int = {
-    if (c == 0 || c == r) 1
-    else pascal(c - 1, r - 1) + pascal(c, r - 1)
+import org.scalatest.funsuite.AnyFunSuite
+
+class SetSuite extends AnyFunSuite {
+  test("singletonSet contains its element"){
+    val s = singletonSet(1)
+    assert(contains(s, 1))
+    assert(!contains(s, 2))
   }
 
-  def main(args: Array[String]): Unit = {
-    println("pascal(0,2) = " + pascal(0,2))
-    println("pascal(1,2) = " + pascal(1,2))
-    println("pascal(1,3) = " + pascal(1,3))
-    println("pascal(2,4) = " + pascal(2,4))
+  test("union contains all elements"){
+    val s1 = singletonSet(1)
+    val s2 = singletonSet(2)
+    val u = union(s1, s2)
+
+    assert(contains(u, 1))
+    assert(contains(u, 2))
+    assert(!contains(u, 3))
   }
 }
